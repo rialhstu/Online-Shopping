@@ -1,0 +1,94 @@
+﻿@model IEnumerable<SportsStore.Domain.Entities.Product>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<table class="Grid">
+    <tr>
+        <td>ID</td>
+        <td>Name</td>
+        <td class="NumericCol">Price</td>
+        <td>Actions</td>
+    </tr>
+   
+        @foreach(var item in Model)
+        {
+            <tr>
+            <td>@item.ProductID</td>
+            <td>@Html.ActionLink(item.Name, "Edit", new {item.ProductID})</td>
+            <td class="NumericCol">@item.Price.ToString("");</td>
+            <td>
+            @using(Html.BeginForm("Delete", "Admin"))
+            {
+                @Html.Hidden("ProductId", item.ProductID);
+                <input type="submit" value="Delete"/>
+                
+            }
+                
+             </td>
+            </tr>
+            
+        }
+        
+    </table>
+    @Html.ActionLink("Create New", "Create");
+    
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table class="Grid">
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th class="NumericCol">Price</th> 
+        
+        <th>Actions</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.ProductID</td>
+            <td>@Html.ActionLink(item.Name,"Edit", new{item.ProductID})</td>
+            <td class="NumericCol">@item.Price.ToString("")</td> 
+            <td>
+            @using(Html.BeginForm("Delete", "Admin")) {
+                 @Html.Hidden("ProductID", item.ProductID) 
+             <input type="submit" value="Delete"/>
+            }
+        </td>
+        </tr>
+    }
+
+</table>
+<p>@Html.ActionLink("Create a new Product", "Create")</p>
